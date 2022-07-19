@@ -1,0 +1,55 @@
+{
+  "name": "@unitless-io/loader",
+  "version": "0.0.1",
+  "description": "Unitless Loader",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/loader.js",
+  "types": "dist/loader.d.ts",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "tsc && babel ./src --out-dir ./dist --extensions \".ts\" --ignore \"src/**/*.test.ts\"",
+    "lint": "eslint --ext ts src && npm run prettier-check",
+    "prettier-check": "prettier --ignore-path .gitignore --check \"./**/*.ts\" \"./**/*.json\"",
+    "test": "jest",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unitless-io/loader.git"
+  },
+  "author": "The Unitless Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unitless-io/loader/issues"
+  },
+  "homepage": "https://unitless.io",
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@tsconfig/node16": "^1.0.2",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.11",
+    "@types/node-fetch": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "babel-jest": "^27.5.1",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.5.0",
+    "tsconfig-paths": "^3.12.0",
+    "typescript": "^4.5.5",
+    "webpack": "^5.68.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
