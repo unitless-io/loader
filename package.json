@@ -1,6 +1,6 @@
 {
   "name": "@unitless-io/loader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Unitless Loader",
   "files": [
     "dist"
