@@ -1,4 +1,10 @@
+import serialize from 'serialize-javascript';
+
 const queue = new Set<string>();
+
+const deserialize = (serializedJavascript: string) => {
+  return eval('(' + serializedJavascript + ')');
+};
 
 const main = () => {
   if (queue.size > 0) {
@@ -14,8 +20,8 @@ const main = () => {
       },
       body: JSON.stringify(
         values.map((valueStr) => {
-          const value = JSON.parse(valueStr);
-          return { ...value, args: JSON.stringify(value.args), result: JSON.stringify(value.result) };
+          const value = deserialize(valueStr);
+          return { ...value, args: serialize(value.args), result: serialize(value.result) };
         })
       ),
     });
@@ -24,7 +30,7 @@ const main = () => {
 };
 
 const pushToQueue = (args: ArrayLike<any>, result: any, id: string) => {
-  queue.add(JSON.stringify({ args, result, id }));
+  queue.add(serialize({ args, result, id }));
 
   if (queue.size > 10) main();
 };

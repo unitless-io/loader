@@ -4,9 +4,6 @@
     "outDir": "dist",
     "declarationDir": "dist",
     "baseUrl": ".",
-    "paths": {
-      "@app/*": ["src/*"]
-    },
     "declaration": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
