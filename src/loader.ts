@@ -4,6 +4,8 @@ import fetch from 'node-fetch';
 import type { JSONSchema7 } from 'schema-utils/declarations/validate';
 import type * as webpack from 'webpack';
 
+import { inject } from '@unitless-io/inject-interceptor';
+
 interface LoaderOptions {
   token: string;
   enabled?: boolean;
@@ -48,8 +50,18 @@ export default async function loader(
 
   const { token, enabled = true } = this.getOptions(schema);
 
-  if (!enabled || !token || !COMMENT_REGEXP.test(content)) {
+  if (!enabled || !COMMENT_REGEXP.test(content)) {
     callback(null, content, ...otherArgss);
+    return;
+  }
+
+  const filePath = path.relative(this.rootContext, this.resourcePath).split(path.sep).join('/');
+
+  if (!token) {
+    const newContent = inject(content, filePath, this.rootContext);
+
+    callback(null, newContent, ...otherArgss);
+
     return;
   }
 
@@ -69,7 +81,7 @@ export default async function loader(
     body: JSON.stringify({
       token: token,
       content,
-      path: path.relative(this.rootContext, this.resourcePath).split(path.sep).join('/'),
+      path: filePath,
       mode: 'webpack',
       webpackData: {
         mode: this.mode,
