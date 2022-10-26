@@ -1,5 +1,7 @@
 import serialize from 'serialize-javascript';
 
+let isLocal = false;
+
 const queue = new Set<string>();
 
 const deserialize = (serializedJavascript: string) => {
@@ -11,7 +13,9 @@ const main = () => {
     const values = Array.from(queue);
     queue.clear();
 
-    fetch('https://catcher.unitless.io/v1/function-data', {
+    const url = isLocal ? 'http://localhost:8088/api/v1/function-data' : 'https://catcher.unitless.io/v1/function-data';
+
+    fetch(url, {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -47,3 +51,8 @@ export const _$Proxy = (f: any, id: string) =>
       return result;
     },
   });
+
+export const _$LocalProxy = (f: any, id: string) => {
+  isLocal = true;
+  return _$Proxy(f, id);
+};
