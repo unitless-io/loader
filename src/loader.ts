@@ -58,7 +58,7 @@ export default async function loader(
   const filePath = path.relative(this.rootContext, this.resourcePath).split(path.sep).join('/');
 
   if (!token) {
-    const newContent = inject(content, filePath, this.rootContext);
+    const newContent = inject(content, filePath);
 
     callback(null, newContent, ...otherArgss);
 
