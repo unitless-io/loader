@@ -40,7 +40,7 @@ interface ResBody {
   content?: string;
 }
 
-export default async function loader(
+export default async function unitlessLoader(
   this: webpack.LoaderContext<LoaderOptions>,
   content: string,
   ...otherArgss: any[]
@@ -50,7 +50,7 @@ export default async function loader(
 
   const { token, enabled = true } = this.getOptions(schema);
 
-  if (!enabled || !COMMENT_REGEXP.test(content)) {
+  if (!enabled || !COMMENT_REGEXP.test(content) || (!token && this.mode !== 'development')) {
     callback(null, content, ...otherArgss);
     return;
   }

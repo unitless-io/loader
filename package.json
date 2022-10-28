@@ -5,8 +5,7 @@
   "files": [
     "dist"
   ],
-  "main": "dist/loader.js",
-  "types": "dist/loader.d.ts",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npm run build-loader && npm run build-web",
     "build-loader": "tsc --project tsconfig.loader.json",
@@ -48,6 +47,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
+    "@unitless-io/data-server": "git+https://github.com/unitless-io/data-server.git#develop",
     "@unitless-io/inject-interceptor": "git+https://github.com/unitless-io/inject-interceptor.git#develop",
     "node-fetch": "^2.6.7"
   }

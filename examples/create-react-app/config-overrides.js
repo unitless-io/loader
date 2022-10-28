@@ -1,3 +1,5 @@
+const { UnitlessPlugin } = require('@unitless-io/loader');
+
 module.exports = function override(config, env) {
   //do stuff with the webpack config...
 
@@ -20,6 +22,12 @@ module.exports = function override(config, env) {
       },
     ],
   });
+
+  if (!config.plugins) {
+    config.plugins = [];
+  }
+
+  config.plugins.push(new UnitlessPlugin());
 
   return config;
 };
