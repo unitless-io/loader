@@ -1,4 +1,5 @@
 import serialize from 'serialize-javascript';
+import { PORT } from './config';
 
 let isLocal = false;
 
@@ -13,7 +14,7 @@ const main = () => {
     const values = Array.from(queue);
     queue.clear();
 
-    const url = isLocal ? 'http://localhost:8088/api/v1/calls' : 'https://catcher.unitless.io/v1/function-data';
+    const url = isLocal ? `http://localhost:${PORT}/api/v1/calls` : 'https://catcher.unitless.io/v1/function-data';
 
     fetch(url, {
       method: 'POST',
