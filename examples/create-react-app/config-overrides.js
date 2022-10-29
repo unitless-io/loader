@@ -16,9 +16,6 @@ module.exports = function override(config, env) {
     use: [
       {
         loader: '@unitless-io/loader',
-        options: {
-          token: '',
-        },
       },
     ],
   });
