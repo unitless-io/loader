@@ -1,7 +1,6 @@
 import serialize from 'serialize-javascript';
-import { PORT } from './config';
 
-let isLocal = false;
+import { PORT } from './config';
 
 const queue = new Set<string>();
 
@@ -14,7 +13,7 @@ const main = () => {
     const values = Array.from(queue);
     queue.clear();
 
-    const url = isLocal ? `http://localhost:${PORT}/api/v1/calls` : 'https://catcher.unitless.io/v1/function-data';
+    const url = `http://localhost:${PORT}/api/v1/calls`;
 
     fetch(url, {
       method: 'POST',
@@ -42,7 +41,7 @@ const pushToQueue = (args: ArrayLike<any>, result: any, id: string) => {
 
 setInterval(main, 10000);
 
-export const _$Proxy = (f: any, id: string) =>
+export const _$LocalProxy = (f: any, id: string) =>
   new Proxy(f, {
     apply(_target: Function, _thisArg: any, args: ArrayLike<any>) {
       const result = Reflect.apply(_target, _thisArg, args);
@@ -52,8 +51,3 @@ export const _$Proxy = (f: any, id: string) =>
       return result;
     },
   });
-
-export const _$LocalProxy = (f: any, id: string) => {
-  isLocal = true;
-  return _$Proxy(f, id);
-};
