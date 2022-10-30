@@ -4,5 +4,5 @@
     "lib": ["esnext"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "src/web.ts"]
+  "exclude": ["node_modules", "src/web.ts", "src/**/*.test.ts", "examples/**/*"]
 }
