@@ -7,6 +7,10 @@
     "allowJs": true,
     "moduleResolution": "node",
     "lib": ["esnext", "DOM"],
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "declarationMap": true,
+    "declaration": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/**/*.test.ts", "examples"]
 }

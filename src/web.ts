@@ -41,9 +41,9 @@ const pushToQueue = (args: ArrayLike<any>, result: any, id: string) => {
 
 setInterval(main, 10000);
 
-export const _$LocalProxy = (f: any, id: string) =>
+export const _$LocalProxy = <T extends Function>(f: T, id: string): T =>
   new Proxy(f, {
-    apply(_target: Function, _thisArg: any, args: ArrayLike<any>) {
+    apply(_target: T, _thisArg: any, args: ArrayLike<any>) {
       const result = Reflect.apply(_target, _thisArg, args);
 
       pushToQueue(args, result, id);
