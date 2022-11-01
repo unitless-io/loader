@@ -2,13 +2,11 @@ import path from 'path';
 import type { JSONSchema7 } from 'schema-utils/declarations/validate';
 import type * as webpack from 'webpack';
 
-import { inject } from '@unitless-io/inject-interceptor';
+import { inject, MAGIC_COMMENTS_REGEXP } from '@unitless-io/inject-interceptor';
 
 interface LoaderOptions {
   enabled?: boolean;
 }
-
-const COMMENT_REGEXP = /@test-next-line/;
 
 const schema: JSONSchema7 = {
   title: '@unitless-io loader options',
@@ -32,7 +30,7 @@ export default async function unitlessLoader(
 
   const { enabled = true } = this.getOptions(schema);
 
-  if (!enabled || !COMMENT_REGEXP.test(content) || this.mode !== 'development') {
+  if (!enabled || !MAGIC_COMMENTS_REGEXP.TEST.test(content) || this.mode !== 'development') {
     callback(null, content, ...otherArgss);
     return;
   }
