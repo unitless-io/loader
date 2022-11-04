@@ -1,11 +1,12 @@
 {
   "name": "@unitless-io/loader",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Unitless Loader",
   "files": [
     "dist"
   ],
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run build-loader && npm run build-web",
     "build-loader": "tsc --project tsconfig.loader.json",
@@ -13,23 +14,34 @@
     "lint": "eslint --ext ts src && npm run prettier-check",
     "prettier-check": "prettier --ignore-path .gitignore --check \"./**/*.ts\" \"./**/*.json\"",
     "test": "jest",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/unitless-io/loader.git"
   },
-  "author": "The Unitless Team",
-  "license": "MIT",
+  "contributors": [
+    {
+      "name": "Vlad Surahin",
+      "email": "v.suragin@gmail.com",
+      "url": "https://github.com/vinlaud"
+    },
+    {
+      "name": "Siarhei Smantsar",
+      "email": "siarhei.smantsar@gmail.com",
+      "url": "https://github.com/SIARHEI-SMANTSAR"
+    }
+  ],
+  "license": "Apache-2.0 license",
   "bugs": {
     "url": "https://github.com/unitless-io/loader/issues"
   },
-  "homepage": "https://unitless.io",
+  "homepage": "https://github.com/unitless-io/loader#readme",
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.11",
-    "@types/node-fetch": "^2.6.1",
     "@types/serialize-javascript": "^5.0.2",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
@@ -40,6 +52,7 @@
     "jest": "^27.5.1",
     "prettier": "^2.5.1",
     "serialize-javascript": "^6.0.0",
+    "standard-version": "^9.5.0",
     "ts-loader": "^9.3.1",
     "ts-node": "^10.5.0",
     "typescript": "^4.8.3",
@@ -47,8 +60,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "@unitless-io/data-server": "git+https://github.com/unitless-io/data-server.git#develop",
-    "@unitless-io/inject-interceptor": "git+https://github.com/unitless-io/inject-interceptor.git#develop",
-    "node-fetch": "^2.6.7"
+    "@unitless-io/data-server": "1.0.0",
+    "@unitless-io/inject-interceptor": "1.0.0"
   }
 }
