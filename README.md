@@ -39,8 +39,8 @@ Add our plugin and loader to your webpack config
     }],
   },
 };
-Note: make sure that the loader is added last to the rules array. Otherwise, you might experience unexpected behavior.
 ```
+Note: make sure that the loader is added last to the rules array. Otherwise, you might experience unexpected behavior.
 ## Usage
 
 
